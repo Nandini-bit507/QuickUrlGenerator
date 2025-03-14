@@ -1,8 +1,6 @@
-import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import User from "../Database/models/User.js";
-import express from "express";
+import User from "../Database/Models/user.js";
 
 
 export const register = async (req, res) => {

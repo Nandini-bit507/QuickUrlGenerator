@@ -1,67 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Us - Quick URL Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #6a11cb;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .hero {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .icon {
+            font-size: 2rem;
+            color: #2575fc;
+        }
+        .card {
+            border: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Quick Url Generator</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Features
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">Quick URL Generator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/page/aboutus">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/page/features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/page/pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/page/contact">Contact</a></li>
+                    
+                    
+                    <script>
+                      const token = localStorage.getItem("token");
+                        if (!token) {
+                          document.write(`
+                            <li class="nav-item">
+                              <a class="nav-link" href="/auth/login/" style="color:white;">Log In</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="/auth/register/" style="color:white;">Register</a>
+                            </li>
+        
+                          `);
+                        }else{
+                            document.write(`
+                            <li class="nav-item"><a class="nav-link" href="/page/url">Shorten URL</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/page/profile">Profile</a></li>
+                                <li class="nav-item">
+                                <button class="nav-link" onclick="logout()" style="color:white;"">Log Out</button>
+                                </li>
+                            `);
+                        }
+                        
+                      function logout() {
+                        
+                        localStorage.removeItem("token");
+                        window.location.href = "/"; // Redirect to home after logout
+                      }
+                    </script>
+                    
+                    
                 </ul>
-              </li>
-              <script>
-                const token = localStorage.getItem("token");
-                  if (!token) {
-                    document.write(`
-                      <li class="nav-item">
-                        <a class="nav-link" href="/auth/login/">Log In</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/auth/register/">Register</a>
-                      </li>
-  
-                    `);
-                  }else{
-                      document.write(`
-                          <li class="nav-item">
-                          <button class="nav-link" onclick="logout()">Log Out</button>
-                          </li>
-                      `);
-                  }
-                  
-                function logout() {
-                  localStorage.removeItem("token");
-                  window.location.href = "/"; // Redirect to home after logout
-                }
-              </script>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+            </div>
         </div>
-      </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
+    </nav>
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

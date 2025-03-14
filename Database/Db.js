@@ -1,13 +1,13 @@
-import mongoose from "mongoose"; 
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
-const mongoURI= process.env.MONGO_URI;
+const mongoURI=process.env.MONGO_URI;
 
 const connectToMongo=async()=>{
     try{
         await mongoose.set('strictQuery',false)
         await mongoose.connect(mongoURI)
-        console.log('Mongo connected')
+        console.log('Mongo Connected')
     }
     catch(error){
         console.log(error)
@@ -15,8 +15,3 @@ const connectToMongo=async()=>{
     }
 }
 export default connectToMongo;
-
-
-    
-
-

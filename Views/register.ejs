@@ -14,7 +14,8 @@
 
   <body>
   <%-include('nav')-%>
-    <main class="form-signin w-100 m-auto p-4 rounded-3">
+  
+    <main class="form-signin w-100 m-auto p-4 rounded-3"style="height:80vh">
       <form
         class="w-50 m-auto d-flex flex-column gap-2"
         onsubmit="doRegister(event); return false;"
@@ -39,6 +40,8 @@
             class="form-control"
             id="email"
             placeholder="name@example.com"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            title="Please enter a valid email address"
             fdprocessedid="4i4zra"
             required
             autocomplete="email"
@@ -52,6 +55,8 @@
             id="password"
             autocomplete="current-password"
             placeholder="Password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Password must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters"
             fdprocessedid="co1ms"
             required
           />
@@ -105,6 +110,11 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
-    ></script>
+    >
+  
+ 
+  
+    </script>
+     <%-include("footer")-%>
   </body>
 </html>
