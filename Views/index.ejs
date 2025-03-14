@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QuickLink - URL Shortener</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <%-include("nav")-%>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickLink - URL Shortener</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <%-include("nav")-%>
 
     <!-- Hero Section -->
     <header id="home" class="hero pt-5">
@@ -23,31 +22,51 @@
               Create short, memorable links in seconds with QuickLink's powerful
               URL shortener.
             </p>
-            <form id="url-form" class="mt-4">
+            <div id="alert"></div>
+            <form id="url-form" class="mt-4" onsubmit="shortURL(event);return false;">
               <div class="input-group mb-3">
-                <input
-                  type="url"
-                  class="form-control"
-                  id="long-url"
-                  placeholder="Enter your long URL here"
-                  required
-                />
+                <input type="url" class="form-control" id="long-url"
+                  placeholder="Enter your long URL here (e.g., https://example.com)" pattern="https://.*"
+                  oninvalid="this.setCustomValidity('Please enter a valid URL starting with https://')"
+                  oninput="this.setCustomValidity('')" required />
                 <button class="btn btn-primary" type="submit">Shorten</button>
               </div>
             </form>
             <div id="result" class="mt-3"></div>
           </div>
           <div class="col-lg-6">
-            <img
-              src="/HomeHero.jpeg"
-              alt="URL Shortener Illustration"
-              class="img-fluid border-radius-lg"
-            />
+            <img src="/HomeHero.jpeg" alt="URL Shortener Illustration" class="img-fluid border-radius-lg" />
           </div>
         </div>
       </div>
     </header>
-
+    <script>
+      const shortURL = async (event) => {
+        event.preventDefault();
+        const token = localStorage.getItem("token");
+        if (!token) {
+          // alert("Please login to shorten URLs");
+          document.getElementById("alert").innerHTML = `<%- include('Alert/alert', {
+                              alertType: 'warning',
+                              alertMessage: 'Please do Login!',
+                              isDismissible: true
+                          }) %>
+              `;
+          setTimeout(() => {
+            window.location.href = "/page/login"; // Redirecting to login
+          }, 2500); // Adding a delay for better user experience
+          return; // Ensuring no further code runs if not authenticated
+        } else {
+          const longUrl = document.getElementById("long-url").value; // Get the URL from the input
+          setTimeout(() => {
+            window.location.href = `/page/url?q=${encodeURIComponent(
+              longUrl
+            )}`; // Redirecting to shorten URL page
+          }, 1000); // Adding a delay for better user experience
+        }
+        return;
+      };
+    </script>
     <!-- Features Section -->
 
     <div class="container pt-5">
@@ -247,43 +266,46 @@
 
     <!-- Contact Section -->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Support</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container text-center py-5">
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Contact Support</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+      <div class="container text-center py-5">
         <h2 class="fw-bold">Have Questions?</h2>
         <p class="text-muted">We're here to help! Reach out to our team for any questions or support needs.</p>
-        
+
         <div class="card mx-auto p-4 shadow-sm" style="max-width: 500px; border-radius: 10px;">
-            <h5 class="fw-bold">Get in Touch with Us</h5>
-            <p class="text-muted">Our support team typically responds within 24 hours</p>
-            <a href="/page/contact" class="btn btn-primary w-100">Contact Us</a>
+          <h5 class="fw-bold">Get in Touch with Us</h5>
+          <p class="text-muted">Our support team typically responds within 24 hours</p>
+          <a href="/page/contact" class="btn btn-primary w-100">Contact Us</a>
         </div>
-        
+
         <div class="row mt-5">
-            <div class="col-md-4">
-                <h6 class="fw-bold">Email Support</h6>
-                <p class="text-muted">support@quicklinks.com</p>
-            </div>
-            <div class="col-md-4">
-                <h6 class="fw-bold">Business Hours</h6>
-                <p class="text-muted">Monday - Friday<br>9:00 AM - 6:00 PM EST</p>
-            </div>
-            <div class="col-md-4">
-                <h6 class="fw-bold">FAQ</h6>
-                <a href="/page/faq" class="text-primary text-decoration-none">Frequently asked questions</a>
-            </div>
+          <div class="col-md-4">
+            <h6 class="fw-bold">Email Support</h6>
+            <p class="text-muted">support@quicklinks.com</p>
+          </div>
+          <div class="col-md-4">
+            <h6 class="fw-bold">Business Hours</h6>
+            <p class="text-muted">Monday - Friday<br>9:00 AM - 6:00 PM EST</p>
+          </div>
+          <div class="col-md-4">
+            <h6 class="fw-bold">FAQ</h6>
+            <a href="/page/faq" class="text-primary text-decoration-none">Frequently asked questions</a>
+          </div>
         </div>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+    </html>
 
 
 
@@ -298,9 +320,10 @@
             <a href="/page/privacypolicy" class="text-white me-3">Privacy Policy</a>
             <a href="/page/terms&conditions" class="text-white me-3">Terms of Service</a>
             <a href="/page/faq" class="text-white me-3">FAQ</a>
-            </div>
+          </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="script.js"></script>
+</body>
+
 </html>
