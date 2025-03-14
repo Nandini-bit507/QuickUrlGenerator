@@ -1,6 +1,6 @@
 import express from "express";
 import { shortenURL,redirectURL } from "../Controllers/urlcontroller.js";
-import authMiddleware from "../middlewares/middleware.js";
+import authMiddleware from "../Middlewares/middleware.js";
 const router = express.Router();
 
 router.get("/page/url", (req, res) => {
