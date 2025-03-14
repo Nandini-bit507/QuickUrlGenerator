@@ -1,90 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About Us - Quick URL Generator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .navbar {
-            background-color: #6a11cb;
-        }
-        .navbar-brand, .nav-link {
-            color: white !important;
-        }
-        .hero {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        .icon {
-            font-size: 2rem;
-            color: #2575fc;
-        }
-        .card {
-            border: none;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="/">Quick URL Generator</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/page/aboutus">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/page/features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/page/pricing">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/page/contact">Contact</a></li>
-                    
-                    
-                    <script>
-                      const token = localStorage.getItem("token");
-                        if (!token) {
-                          document.write(`
-                            <li class="nav-item">
-                              <a class="nav-link" href="/auth/login/" style="color:white;">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="/auth/register/" style="color:white;">Register</a>
-                            </li>
-        
-                          `);
-                        }else{
-                            document.write(`
-                            <li class="nav-item"><a class="nav-link" href="/page/url">Shorten URL</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/page/profile">Profile</a></li>
-                                <li class="nav-item">
-                                <button class="nav-link" onclick="logout()" style="color:white;"">Log Out</button>
-                                </li>
-                            `);
-                        }
-                        
-                      function logout() {
-                        
-                        localStorage.removeItem("token");
-                        window.location.href = "/"; // Redirect to home after logout
-                      }
-                    </script>
-                    
-                    
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="QuickLink - The best URL shortener to create short, memorable links in seconds."
+    />
+    <meta
+      name="keywords"
+      content="URL shortener, link shortener, QuickLink, short URLs, link management"
+    />
+    <meta name="author" content="QuickLink Team" />
+    <meta property="og:title" content="QuickLink - URL Shortener" />
+    <meta
+      property="og:description"
+      content="Create short, memorable links in seconds with QuickLink's powerful URL shortener."
+    />
+    <meta property="og:image" content="/HomeHero.jpeg" />
+    <meta property="og:url" content="https://quick-links-8jmw.onrender.com" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="QuickLink - URL Shortener" />
+    <meta
+      name="twitter:description"
+      content="Create short, memorable links in seconds with QuickLink's powerful URL shortener."
+    />
+    <meta name="twitter:image" content="/path/to/your/image.jpg" />
+    <meta name="twitter:site" content="@yourtwitterhandle" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="twitter:creator" content="@yourtwitterhandle" />
+    <title>Responsive Navbar</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <style>
+    .navbar {
+      /* background-color: #343a40; Dark color */
+      background-color: #5819e4; /* Dark color */
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    .navbar-brand,
+    .nav-link {
+      color: #f8f9fa !important; /* Light color */
+      font-weight: bolder;
+    }
+
+    .navbar-toggler {
+      border-color: rgba(248, 249, 250, 0.5);
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(248, 249, 250, 0.5)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    .navbar-toggler-icon.open {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(248, 249, 250, 0.5)' stroke-width='2' d='M5 5 L25 25 M25 5 L5 25'/%3E%3C/svg%3E");
+    }
+  </style>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <a class="navbar-brand" href="/">Quick Links</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon" id="navbarIcon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/page/aboutus">About</a>
+            <!-- Added About link -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/page/features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/page/pricing">Pricing</a>
+            <!-- Updated to link correctly -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/page/contact">Contact</a>
+          </li>
+
+          <script>
+            const token = localStorage.getItem("token");
+            if (!token) {
+              document.write(`
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/page/login/">Log In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/page/register/">Register</a>
+              </li>
+            `);
+            } else {
+              document.write(`
+              <li class="nav-item">
+                <a class="nav-link" href="/page/url">Shorten URL</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/page/profile">Profile</a> <!-- Added Profile link -->
+              </li>
+              <li class="nav-item " role="button">
+                <a class="nav-link"  onclick="logout()">Log Out</a>
+              </li>
+            `);
+            }
+
+            function logout() {
+              localStorage.removeItem("token");
+              window.location.href = "/"; // Redirect to home after logout
+            }
+          </script>
+        </ul>
+      </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbarToggler = document.querySelector(".navbar-toggler");
+        const navbarIcon = document.getElementById("navbarIcon");
+
+        navbarToggler.addEventListener("click", function () {
+          navbarIcon.classList.toggle("open");
+        });
+      });
+    </script>
+  </body>
 </html>
